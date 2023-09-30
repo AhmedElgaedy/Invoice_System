@@ -91,7 +91,7 @@
                         </thead>
                         <tbody>
                             <?php $i = 0; ?>
-                            @foreach ($sections as $x)
+                            @foreach ($Section as $x)
                                 <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>

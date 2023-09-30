@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Sections;
+use App\Models\Section;
 use App\Http\Requests\SectionRequest;
 class SectionsController extends Controller
 {
@@ -12,8 +12,8 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        $sections = sections::all();
-        return view('sections.sections',compact('sections'));
+        $Section = Section::all();
+        return view('sections.sections',compact('Section'));
     }
 
     /**
@@ -30,7 +30,7 @@ class SectionsController extends Controller
     public function store( SectionRequest $request)
     {
             if (!session()->has('Erorr')) {
-                $record = sections::create($request->validated());
+                $record = Section::create($request->validated());
                         if($record){
                             session()->flash('Add', 'تم اضافة القسم بنجاح ');
                         }
@@ -44,7 +44,7 @@ class SectionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sections $sections)
+    public function show(Section $sections)
     {
         //
     }
@@ -52,7 +52,7 @@ class SectionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sections $sections)
+    public function edit(Section $sections)
     {
         //
     }
@@ -76,7 +76,7 @@ class SectionsController extends Controller
 
         ]);
 
-        $sections = sections::find($id);
+        $sections = Section::find($id);
         $sections->update([
             'section_name' => $request->section_name,
             'description' => $request->description,
@@ -92,7 +92,7 @@ class SectionsController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-        sections::find($id)->delete();
+        Section::find($id)->delete();
         session()->flash('delete','تم حذف القسم بنجاح');
         return redirect()->route('sections.index');
     }
