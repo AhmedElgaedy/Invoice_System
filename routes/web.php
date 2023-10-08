@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -32,8 +34,10 @@ Route::resource('sections' , SectionsController::class);
 
 Route::resource('products', ProductsController::class);
 
+Route::get('product-by-section/{id}',function ($id){
+return response()->json(Product::where('section_id',$id)->pluck('Product_name','id'));
+})->name('product-by-section');
 
-
-
+    
 Route::get('/{page}', [AdminController::class,'index']);  
 
