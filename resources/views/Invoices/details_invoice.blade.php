@@ -48,14 +48,14 @@
 
 
 
-    @if (session()->has('delete'))
+     @if (session()->has('delete'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{ session()->get('delete') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    @endif
+    @endif 
 
 
 
@@ -202,7 +202,7 @@
                                         <div class="tab-pane" id="tab6">
                                             <!--المرفقات-->
                                             <div class="card card-statistics">
-                                                @can('اضافة مرفق')
+                                              
                                                     <div class="card-body">
                                                         <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                                         <h5 class="card-title">اضافة مرفقات</h5>
@@ -223,7 +223,7 @@
                                                                 name="uploadedFile">تاكيد</button>
                                                         </form>
                                                     </div>
-                                                @endcan
+                                                
                                                 <br>
 
                                                 <div class="table-responsive mt-15">
@@ -260,14 +260,14 @@
                                                                                 class="fas fa-download"></i>&nbsp;
                                                                             تحميل</a>
 
-                                                                        @can('حذف المرفق')
+                                                                   
                                                                             <button class="btn btn-outline-danger btn-sm"
                                                                                 data-toggle="modal"
                                                                                 data-file_name="{{ $attachment->file_name }}"
                                                                                 data-invoice_number="{{ $attachment->invoice_number }}"
                                                                                 data-id_file="{{ $attachment->id }}"
                                                                                 data-target="#delete_file">حذف</button>
-                                                                        @endcan
+                                                                     
 
                                                                     </td>
                                                                 </tr>
@@ -304,7 +304,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('delete_file') }}" method="post">
+               <form action="{{ route('delete_file') }}" method="post">
 
                     {{ csrf_field() }}
                     <div class="modal-body">
@@ -321,7 +321,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
                         <button type="submit" class="btn btn-danger">تاكيد</button>
                     </div>
-                </form>
+                </form> 
             </div>
         </div>
     </div>

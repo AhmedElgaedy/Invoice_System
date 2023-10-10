@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Invoice;
+use App\Models\Invoice_attachments;
 use App\Models\Invoice_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InvoiceDetailsController extends Controller
 {
@@ -41,9 +44,13 @@ class InvoiceDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(invoice_details $invoices_details)
+    public function edit($id)
     {
-        //
+        $invoices = Invoice::findOrFail($id);
+        $details  = Invoice_Details::where('id_Invoice',$id)->get();
+        $attachments  = Invoice_attachments::where('invoice_id',$id)->get();
+
+        return view('Invoices.details_invoice',compact('invoices','details','attachments'));
     }
 
     /**
@@ -57,8 +64,30 @@ class InvoiceDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(invoice_details $invoices_details)
-    {
-        //
+    public function destroy(Request $request)
+    
+        {
+            $invoices = Invoice_attachments::findOrFail($request->id_file);
+            $invoices->delete();
+            Storage::disk('public_uploads')->delete($request->invoice_number.'/'.$request->file_name);
+            session()->flash('delete', 'تم حذف المرفق بنجاح');
+            return back();
+        }
+    
+     public function get_file($invoice_number,$file_name)
+    
+        {
+            $contents= Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+            return response()->download( $contents);
+        }
+    
+    
+    
+        public function open_file($invoice_number,$file_name)
+    
+        {
+            $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+            return response()->file($files);
+        }
     }
-}
+

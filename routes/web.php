@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\ProductsController;
-
+use App\Http\Controllers\InvoiceDetailsController;
 
 
 /*
@@ -38,6 +38,16 @@ Route::get('product-by-section/{id}',function ($id){
 return response()->json(Product::where('section_id',$id)->pluck('Product_name','id'));
 })->name('product-by-section');
 
+Route::get('InvoicesDetails/{id}', [InvoiceDetailsController::class, 'edit'])->name('InvoicesDetails');
+
+Route::get('download/{invoice_number}/{file_name}', [InvoiceDetailsController::class , 'get_file'])->name('get file');
+
+Route::get('View_file/{invoice_number}/{file_name}', [InvoiceDetailsController::class,'open_file'])->name('View_file');
+
+Route::post('delete_file', [InvoiceDetailsController::class ,'destroy'])->name('delete_file');
+
+
+
     
-Route::get('/{page}', [AdminController::class,'index']);  
+Route::get('hamada/{page}', [AdminController::class,'index']);  
 
