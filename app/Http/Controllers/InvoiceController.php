@@ -111,7 +111,8 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $invoices = Invoice::where('id', $id)->first();
+        return view('Invoices.status_update', compact('invoices'));  
     }
 
     /**
@@ -125,9 +126,26 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $invoices = Invoice::findOrFail($request->invoice_id);
+        $invoices->update([
+            'invoice_number' => $request->invoice_number,
+            'invoice_Date' => $request->invoice_Date,
+            'Due_date' => $request->Due_date,
+            'product' => $request->product,
+            'section_id' => $request->Section,
+            'Amount_collection' => $request->Amount_collection,
+            'Amount_Commission' => $request->Amount_Commission,
+            'Discount' => $request->Discount,
+            'Value_VAT' => $request->Value_VAT,
+            'Rate_VAT' => $request->Rate_VAT,
+            'Total' => $request->Total,
+            'note' => $request->note,
+        ]);
+
+        session()->flash('edit', 'تم تعديل الفاتورة بنجاح');
+        return back();
     }
 
     /**
@@ -142,5 +160,56 @@ class InvoiceController extends Controller
 //             return json_encode($products);
 
 // }
+
+
+
+public function Status_update($id, Request $request)
+{
+    $invoices = Invoice::findOrFail($id);
+
+    if ($request->Status === 'مدفوعة') {
+
+        $invoices->update([
+            'Value_Status' => 1,
+            'Status' => $request->Status,
+            'Payment_Date' => $request->Payment_Date,
+        ]);
+
+        Invoice_Details::create([
+            'id_Invoice' => $request->invoice_id,
+            'invoice_number' => $request->invoice_number,
+            'product' => $request->product,
+            'Section' => $request->Section,
+            'Status' => $request->Status,
+            'Value_Status' => 1,
+            'note' => $request->note,
+            'Payment_Date' => $request->Payment_Date,
+            'user' => (Auth::user()->name),
+        ]);
+    }
+
+    else {
+        $invoices->update([
+            'Value_Status' => 3,
+            'Status' => $request->Status,
+            'Payment_Date' => $request->Payment_Date,
+        ]);
+        Invoice_Details::create([
+            'id_Invoice' => $request->invoice_id,
+            'invoice_number' => $request->invoice_number,
+            'product' => $request->product,
+            'Section' => $request->Section,
+            'Status' => $request->Status,
+            'Value_Status' => 3,
+            'note' => $request->note,
+            'Payment_Date' => $request->Payment_Date,
+            'user' => (Auth::user()->name),
+        ]);
+    }
+    session()->flash('Status_Update');
+    return redirect('/invoices');
+
 }
 
+
+}

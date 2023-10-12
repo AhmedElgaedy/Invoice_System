@@ -58,7 +58,6 @@ class InvoiceDetailsController extends Controller
      */
     public function update(Request $request, invoice_details $invoices_details)
     {
-        //
     }
 
     /**

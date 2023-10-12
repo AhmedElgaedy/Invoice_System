@@ -46,8 +46,12 @@ Route::get('View_file/{invoice_number}/{file_name}', [InvoiceDetailsController::
 
 Route::post('delete_file', [InvoiceDetailsController::class ,'destroy'])->name('delete_file');
 
+Route::get('/status_show/{id}',[InvoiceController::class,'show'])->name('status_show');
+
+Route::post('/Status_Update/{id}', [InvoiceController::class,'Status_update'])->name('Status_update');
 
 
-    
+
+
 Route::get('hamada/{page}', [AdminController::class,'index']);  
 

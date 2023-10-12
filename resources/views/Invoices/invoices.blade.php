@@ -140,37 +140,29 @@
                                                 <div class="dropdown-menu tx-13">
                                                     
                                                         <a class="dropdown-item"
-                                                            href=" {{ url('edit_invoice') }}/{{ $x->id }}">تعديل
-                                                            الفاتورة</a>
+                                                            href=" {{ url('edit_invoice') }}/{{ $x->id }}">تعديل الفاتورة</a>
                                                    
                                                    
                                                         <a class="dropdown-item" href="#" data-invoice_id="{{ $x->id }}"
                                                             data-toggle="modal" data-target="#delete_invoice"><i
-                                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                            الفاتورة</a>
+                                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة</a>
                                                   
 
-                                                    @can('تغير حالة الدفع')
+                                                    
                                                         <a class="dropdown-item"
-                                                            href="{{ URL::route('Status_show', [$x->id]) }}"><i
-                                                                class=" text-success fas
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    fa-money-bill"></i>&nbsp;&nbsp;تغير
-                                                            حالة
-                                                            الدفع</a>
-                                                    @endcan
+                                                            href="{{ route('status_show', $x->id) }}"><i
+                                                                class=" text-success fas a-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع</a>
+                                                
 
                                                     
                                                         <a class="dropdown-item" href="#" data-invoice_id="{{ $x->id }}"
                                                             data-toggle="modal" data-target="#Transfer_invoice"><i
-                                                                class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
-                                                            الارشيف</a>
+                                                                class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
                                                     
 
                                                     
                                                         <a class="dropdown-item" href="Print_invoice/{{ $x->id }}"><i
-                                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
-                                                            الفاتورة
-                                                        </a>
+                                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
                                                 
                                                 </div>
                                             </div>
