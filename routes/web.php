@@ -50,6 +50,15 @@ Route::get('/status_show/{id}',[InvoiceController::class,'show'])->name('status_
 
 Route::post('/Status_Update/{id}', [InvoiceController::class,'Status_update'])->name('Status_update');
 
+Route::resource('Archive', InvoiceAchiveController::class);
+
+Route::get('invoices_paid',[InvoiceController::class ,'invoice_paid']);
+
+Route::get('invoices_unpaid',[InvoiceController::class ,'invoice_unPaid']);
+
+Route::get('invoices_partial',[InvoiceController::class ,'invoice_partial']);
+
+
 
 
 

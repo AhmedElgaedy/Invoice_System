@@ -211,5 +211,22 @@ public function Status_update($id, Request $request)
 
 }
 
+public function invoice_paid()
+    {
+        $invoices = Invoice::where('Value_Status', 1)->get();
+        return view('Invoices.invoices_paid',compact('invoices'));
+    }
+
+    public function invoice_unPaid()
+    {
+        $invoices = Invoice::where('Value_Status',2)->get();
+        return view('Invoices.invoices_unpaid',compact('invoices'));
+    }
+
+    public function invoice_partial()
+    {
+        $invoices = Invoice::where('Value_Status',3)->get();
+        return view('Invoices.invoices_partial',compact('invoices'));
+    }
 
 }
