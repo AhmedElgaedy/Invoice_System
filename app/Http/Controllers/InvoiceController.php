@@ -7,6 +7,8 @@ use App\Models\Invoice_details;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class InvoiceController extends Controller
@@ -120,7 +122,9 @@ class InvoiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $invoices = Invoice::where('id', $id)->first();
+        $sections = Section::all();
+        return view('Invoices.edit_invoice', compact('sections', 'invoices'));
     }
 
     /**
@@ -151,9 +155,41 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(request $request)
     {
-        //
+        $id = $request->invoice_id;
+        $invoices = Invoice::where('id', $id)->first();
+        $Details = invoice_attachments::where('invoice_id', $id)->first();
+
+         $id_page =$request->id_page;
+
+
+        if (!$id_page==2) {
+
+        if (!empty($Details->invoice_number)) {
+
+            Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+        }
+
+        $invoices->forceDelete();
+        session()->flash('delete_invoice');
+        return redirect('/invoices');
+
+        }
+
+        else {
+
+            $invoices->delete();
+            session()->flash('archive_invoice');
+            return redirect('/Archive');
+        }
+
+
+    }
+    public function getproducts($id)
+    {
+        $products = DB::table("products")->where("section_id", $id)->pluck("Product_name", "id");
+        return json_encode($products);
     }
 //     public function getproducts($id) {
 //         $products=DB::table('Product')->where('section_id',$id)->pluck('Product_name','id');

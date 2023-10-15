@@ -139,8 +139,7 @@
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
                                                     
-                                                        <a class="dropdown-item"
-                                                            href=" {{ url('edit_invoice') }}/{{ $x->id }}">تعديل الفاتورة</a>
+                                                        <a class="dropdown-item"href=" {{ url('edit_invoice') }}/{{ $x->id }}">تعديل الفاتورة</a>
                                                    
                                                    
                                                         <a class="dropdown-item" href="#" data-invoice_id="{{ $x->id }}"
@@ -149,8 +148,7 @@
                                                   
 
                                                     
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('status_show', $x->id) }}"><i
+                                                        <a class="dropdown-item" href="{{ route('status_show', $x->id) }}"><i
                                                                 class=" text-success fas a-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع</a>
                                                 
 
@@ -161,8 +159,7 @@
                                                     
 
                                                     
-                                                        <a class="dropdown-item" href="Print_invoice/{{ $x->id }}"><i
-                                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
+                                                    
                                                 
                                                 </div>
                                             </div>
