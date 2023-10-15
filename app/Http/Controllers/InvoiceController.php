@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\InvoiceExport;
 use App\Models\Invoice;
 use App\Models\Invoice_attachments;
 use App\Models\Invoice_details;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class InvoiceController extends Controller
@@ -265,4 +267,8 @@ public function invoice_paid()
         return view('Invoices.invoices_partial',compact('invoices'));
     }
 
+    public function export() 
+    {
+        return Excel::download(new InvoiceExport, 'invoices.xlsx');
+    }
 }

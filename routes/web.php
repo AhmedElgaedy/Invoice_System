@@ -63,6 +63,9 @@ Route::get('invoices_unpaid',[InvoiceController::class ,'invoice_unPaid']);
 
 Route::get('invoices_partial',[InvoiceController::class ,'invoice_partial']);
 
+Route::get('export_invoices', [InvoiceController::class, 'export']);
+
+
 
 
 
