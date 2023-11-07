@@ -6,7 +6,10 @@ use App\Models\Invoice;
 use App\Models\Invoice_attachments;
 use App\Models\Invoice_details;
 use App\Models\Section;
+use App\Models\User;
+use App\Notifications\InvoiceCreate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -91,12 +94,10 @@ class InvoiceController extends Controller
         }
 
 
-           // $user = User::first();
-           // Notification::send($user, new AddInvoice($invoice_id));
+            $user = User::first();
+            Notification::send($user, new InvoiceCreate($invoice_id));
 
-        // $user = User::get();
-        // $invoices = Invoice::latest()->first();
-        // Notification::send($user, new Add_invoice_new($invoices));
+       
 
      
 
