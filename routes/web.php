@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomersReportController;
+use App\Http\Controllers\ReportController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -65,6 +67,14 @@ Route::get('invoices_partial',[InvoiceController::class ,'invoice_partial']);
 
 Route::get('export_invoices', [InvoiceController::class, 'export']);
 
+Route::get('invoices_report', [ReportController::class,'index']);
+
+Route::post('Search_invoices', [ReportController::class,'search_invoices']);
+
+
+Route::get('customers_report', [CustomersReportController::class,'index'])->name("customers_report");
+
+Route::post('Search_customers', [CustomersReportController::class,'Search_customers']);
 
 
 
