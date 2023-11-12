@@ -1,9 +1,49 @@
-<h1 align="center">Hi 👋, I'm Ahmed Moustafa Othman</h1>
-<h3 align="center">A passionate Backend developer</h3>
+# Invoice System
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+Description
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://laravel.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-plain-wordmark.svg" alt="laravel" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> </p>
+The Invoice System with Dashboard is a web-based application that simplifies the
+creation, management, and tracking of invoices. It has a user-friendly interface and
+customizable templates for invoice generation. Other features include client
+management, product and categories catalog, payment integration, analytics and
+reporting, notifications, and user roles and permissions. This system saves time,
+improves cash flow, and provides insights into financial performance. It is adaptable
+for any business size and offers a solution to streamline invoicing processes.
+
+
+
+
+Requirements
+
+PHP (>= 7.0.0)
+Laravel
+Composer
+
+
+ 
+Clone this repository:
+git clone https://github.com/example/laravel-project.git
+Install the dependencies:
+composer install
+Setup your .env file:
+cp .env.example .env
+Create the necessary database:
+php artisan migrate
+And run the initial migrations and seeders:
+php artisan migrate --seed
+Start the application:
+php artisan serve
+Usage
+
+Once the application is running, you can access it at http://localhost:8000.
+
+Features
+
+This Laravel project template includes the following features:
+
+Basic user authentication
+A basic routing system
+A basic template system
+A database connection
+Additional information
+
